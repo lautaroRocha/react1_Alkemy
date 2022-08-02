@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import React from 'react';
 import {useNavigate} from 'react-router-dom'
+import '../styles/login.css'
 
 function Login(){
     const navegar = useNavigate();
@@ -40,7 +41,7 @@ function Login(){
             )
     }
     return(
-        <div>
+        <section className='login-com'>
             <h1>
                 Formulario de Login
             </h1>
@@ -55,7 +56,7 @@ function Login(){
                 </label><br/>
                 <button type="submit"> Ingresar</button>
             </form>
-        </div>
+        </section>
     )
 }
 
