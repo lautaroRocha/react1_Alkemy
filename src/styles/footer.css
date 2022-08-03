@@ -1,10 +1,13 @@
+@import 'reset.css';
+
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100vw;
     height: 5rem;
     display: flex;
-    background-color: aqua;
+    background-color: var(--rosaOscuro);
+    color: var(--texto);
     justify-content: center;
     align-items: center;
 }

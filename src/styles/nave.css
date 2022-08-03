@@ -1,13 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
-
+@import 'reset.css';
 
 header{
-    background-color: aqua;
+    background-color: var(--rosa);
     width: 100vw;
     height: 15vh;
     display: flex;
@@ -26,7 +20,7 @@ ul {
 ul li a{
     text-decoration: none;
     margin: .5rem;
-    color: black;
+    color: var(--texto);
     font-size: 1.2rem;
     font-weight: 600;
 }

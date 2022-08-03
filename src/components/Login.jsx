@@ -2,7 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import React from 'react';
-import {useNavigate} from 'react-router-dom'
+import {Navigate, useNavigate} from 'react-router-dom'
 import '../styles/login.css'
 
 function Login(){
@@ -34,30 +34,33 @@ function Login(){
                 MySwal.fire('Estás dentro');
                 const tokenRecibido = res.data.token;
                 localStorage.setItem('token', tokenRecibido);
-                
                 navegar("/listado", { replace: true })
                 ;
             }
             )
     }
-    return(
+    let token = localStorage.getItem('token')
+    if(token){
+    return (<Navigate replace to={"/listado"} /> ) 
+    }else{
+        return(  
         <section className='login-com'>
-            <h1>
-                Formulario de Login
-            </h1>
-            <form onSubmit={submitHandler}>
-                <label>
-                Email:<br/>
-                <input type="text" name="email" /> 
-                </label><br/>
-                <label>
-                    Contraseña:<br/>
-                <input type="password" name="password" /> 
-                </label><br/>
-                <button type="submit"> Ingresar</button>
-            </form>
-        </section>
-    )
+        <h1>
+            Formulario de Login
+        </h1>
+        <form onSubmit={submitHandler}>
+            <label>
+            Email:<br/>
+            <input type="text" name="email" /> 
+            </label><br/>
+            <label>
+                Contraseña:<br/>
+            <input type="password" name="password" /> 
+            </label><br/>
+            <button type="submit"> Ingresar</button>
+        </form>
+        </section>)
+    }
 }
 
 export default Login;
