@@ -1,10 +1,12 @@
 @import 'reset.css';
-
+.login-div{
+    display: grid;
+    height: 100vh;
+}
 .login-com {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 30vh;
     text-align: center;
     width: fit-content;
     background-color: var(--grisClaro);

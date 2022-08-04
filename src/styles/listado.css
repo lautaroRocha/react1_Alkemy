@@ -4,16 +4,17 @@
     text-align: center;
     margin: auto;
     margin-top: 22vh;
-    height: 100vh;
-    width: 100vw;
 }
+
 .listado .cont-peli{
     display: flex;
     flex-wrap: wrap;
-    margin: 1rem auto; 
+    margin: 1rem auto 10rem; 
     width: 80%;
+    height: fit-content;
     gap: 1rem;
 }
+
 .peli{
     flex: 1 0 1 ;
     width: 200px;

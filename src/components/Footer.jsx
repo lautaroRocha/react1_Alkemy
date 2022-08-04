@@ -3,12 +3,14 @@ import '../styles/footer.css'
 
 function Footer () {
     return (
-        <footer>
-            <span>
-                gracias por venir
-            </span>
-            
-        </footer>
+        <div>
+            <footer>
+                <span>
+                    gracias por venir
+                </span>
+                
+            </footer>
+        </div>
     )
 }
 

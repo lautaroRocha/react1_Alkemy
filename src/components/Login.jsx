@@ -33,34 +33,36 @@ function Login(){
             .then(res => {
                 MySwal.fire('Estás dentro');
                 const tokenRecibido = res.data.token;
-                localStorage.setItem('token', tokenRecibido);
+                sessionStorage.setItem('token', tokenRecibido);
                 navegar("/listado", { replace: true })
                 ;
             }
             )
     }
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
     if(token){
     return (<Navigate replace to={"/listado"} /> ) 
     }else{
         return(  
-        <section className='login-com'>
-        <h1>
-            Formulario de Login
-        </h1>
-        <form onSubmit={submitHandler}>
-            <label>
-            Email:<br/>
-            <input type="text" name="email" /> 
-            </label><br/>
-            <label>
-                Contraseña:<br/>
-            <input type="password" name="password" /> 
-            </label><br/>
-            <button type="submit"> Ingresar</button>
-        </form>
-        </section>)
-    }
+        <div className='login-div'>
+            <section className='login-com'>
+            <h1>
+                Formulario de Login
+            </h1>
+            <form onSubmit={submitHandler}>
+                <label>
+                Email:<br/>
+                <input type="text" name="email" /> 
+                </label><br/>
+                <label>
+                    Contraseña:<br/>
+                <input type="password" name="password" /> 
+                </label><br/>
+                <button type="submit"> Ingresar</button>
+            </form>
+            </section>
+            </div>)
+           }
 }
 
 export default Login;
