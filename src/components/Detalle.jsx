@@ -1,12 +1,31 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios'
 
 import '../styles/detalle.css'
 function Detalle(){
     let token = sessionStorage.getItem ('token'); 
     const MySwal = withReactContent(Swal);
+
+    let params = new URLSearchParams(document.location.search)
+    let id = params.get('movieID')
+    const [movie, setMovie] = useState(null)
+
+    useEffect(() =>{
+        const endPoint = `https://api.themoviedb.org/3/movie/${id}?api_key=89be792ea6306278c870e8ce473ab886&language=en-US`
+        axios.get(endPoint)
+        .then(res => {
+            let detalles = res.data;
+            setMovie(detalles)})
+        .catch(err => {
+                MySwal.fire('hubo un problema conectándose con el servidor')})
+        }, [setMovie] )
+    
+    console.log(movie)
+
     if(token == null){
         return (
         MySwal.fire('debes estar logueado'),
@@ -15,24 +34,22 @@ function Detalle(){
         return (
             <>
             <section className="detalle">
+              {  movie && 
                 <div className="detalle-cont">
                     <div className="detalle-col-uno">
-                        <h2>TITULO</h2>
-                        <img src="https://www.cdc.gov/NCBDDD/Spanish/birthdefects/images/spanish-asd-web.jpg" alt="" />
+                        <h2>{movie.title}</h2>
+                        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
                     </div>
                     <div className="detalle-col-dos">
-                        <p className="detalle-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, eius? Necessitatibus vitae porro natus distinctio rerum aut adipisci, excepturi minima quibusdam sequi officia non odio sit nobis obcaecati ex reprehenderit? Sapiente maxime aperiam minima tempora aliquam iure eius est vero placeat illum corrupti maiores voluptatum odit perspiciatis, architecto suscipit, voluptatibus officia adipisci ipsam sequi. Ex assumenda veritatis quos odit modi.</p>
+                        <p className="detalle-des">{movie.overview}</p>
                     <div className="detalle-gnr">
-                        <span>GENERO</span>
-                        <span>GENERO</span>
-                        <span>GENERO</span>
+                        {movie.genres.map (oneGenre => <span>{oneGenre.name}</span>)}
                     </div>
                     </div>
-                </div>
+                </div>}
             </section>
-        </>
-        )
+            </>
+        )}
         }
-}
 
 export default Detalle;
