@@ -1,4 +1,8 @@
 @import 'reset.css';
+
+.loading{
+    margin: 25vh 5vw ;
+}
 .detalle{
     height: 100vh;
 }

@@ -34,6 +34,10 @@ function Detalle(){
         return (
             <>
             <section className="detalle">
+                {
+                    !movie &&
+                    <h2 className="loading">Cargando...</h2>
+                }
               {  movie && 
                 <div className="detalle-cont">
                     <div className="detalle-col-uno">

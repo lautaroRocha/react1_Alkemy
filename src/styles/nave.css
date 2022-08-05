@@ -5,8 +5,9 @@ header{
     width: 100vw;
     height: 15vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
     position: fixed;
     top: 0;
 }

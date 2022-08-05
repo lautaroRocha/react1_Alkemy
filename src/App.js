@@ -5,6 +5,8 @@ import Listado from './components/Listado.jsx'
 import Nave from "./components/Nave.jsx"
 import Footer from './components/Footer.jsx';
 import Detalle from './components/Detalle.jsx';
+import Resultado from "./components/Resultado.jsx" 
+
 
 function App() {
   return (
@@ -14,10 +16,11 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="listado" element={<Listado />} />
-      <Route path="/detalle" element={<Detalle />}></Route>
+      <Route path="/detalle" element={<Detalle />} />
+      <Route path="/resultado" element={<Resultado />} />
     </Routes>
       <Footer />
-      </BrowserRouter>
+    </BrowserRouter>
     </>
   );
 }

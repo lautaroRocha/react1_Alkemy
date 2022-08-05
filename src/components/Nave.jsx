@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import '../styles/nave.css'
+import './Buscador.jsx'
+import Buscador from './Buscador.jsx';
 
 function Nave() {
     return (
@@ -16,9 +18,8 @@ function Nave() {
                     <Link to="/fav">Favoritos</Link>
                 </li>
             </ul>
-    
-        
-</header>
+            <Buscador/>
+        </header>
     )
 }
 
