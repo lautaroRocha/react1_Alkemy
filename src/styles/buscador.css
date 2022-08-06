@@ -1,24 +1,24 @@
 @import 'reset.css';
 
-form{
+.form-busc{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-input{
+.form-busc label input{
     border-radius: 100px;
     height: 1.5rem;
     width: 18vw;
     padding: .5rem;
     font-size: 1rem;
 }
-button {
+.form-busc button {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
     position: relative;
     right: 2.5rem;
 }
-button:hover{
+.form-busc button:hover{
     cursor: pointer;
 }

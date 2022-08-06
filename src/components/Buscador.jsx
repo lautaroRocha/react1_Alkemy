@@ -24,7 +24,7 @@ function Buscador(){
     }
     return(
         <>
-        <form onSubmit={prevent}>
+        <form className="form-busc" onSubmit={prevent}>
             <label>
                 <input type="text" placeholder="Buscador..." name="keyword"/>
             </label>            

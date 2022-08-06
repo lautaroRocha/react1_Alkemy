@@ -40,3 +40,23 @@
     margin: 10px;
     border-radius: 10px;
 }
+.btns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.peli .fv-btn{
+    width: 30px;
+    height: 30px;
+    background-color: var(--rosaOscuro);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 20px;
+}
+.fv-btn:hover{
+    cursor: pointer;
+    background-color: var(--rosaClaro);
+}
