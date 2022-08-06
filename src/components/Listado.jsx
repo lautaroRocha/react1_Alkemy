@@ -1,45 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
+
 import { Link, Navigate } from 'react-router-dom';
-import '../styles/listado.css'
+
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
+import addOrRemoveFavs from "./favoritoSiNo";
+
+import '../styles/listado.css'
+
 function Listado () {
-    const  addOrRemoveFavs = e =>{
-        const favs = localStorage.getItem('favs')
-   
-        let tempFavs;
-    
-        if(favs === null){
-            tempFavs = [];
-        }else{
-            tempFavs = JSON.parse(favs)
-        }
-    
-        const btn = e.currentTarget;
-        const parent = btn.parentElement;
-        const div = parent.parentElement;
-        const imgURL = div.querySelector ('img').getAttribute('src')
-        const title = div.querySelector('.peli-titulo').textContent;
-        const resu = div.querySelector('.peli-desp').textContent
-        const id = btn.dataset.id;
-        const movieFav = {
-            imgURL, title, resu, id
-        }
-        let movieIsFav = tempFavs.find( oneMovie =>{
-            return oneMovie.id === movieFav.id})
-        if(!movieIsFav){
-            tempFavs.push(movieFav);
-            localStorage.setItem('favs', JSON.stringify(tempFavs))
-        }else{
-            let moviesLeft = tempFavs.filter(peli => {
-                return peli.id !== movieFav.id;})
-            localStorage.setItem('favs', JSON.stringify(moviesLeft))
-        }
-       
-      }
+    const  favoritoLlevarOQuitar =  addOrRemoveFavs;
+
     let token = sessionStorage.getItem ('token'); 
     const MySwal = withReactContent(Swal);
     const [ moviesList, setMoviesList ] = useState([]);
@@ -75,7 +49,7 @@ function Listado () {
                                 <Link to={`/detalle?movieID=${peli.id}`}>
                                     <button>Ver detalles</button>
                                 </Link>
-                                <button className="fv-btn" onClick={addOrRemoveFavs} data-id={peli.id}><span role='img' aria-label="no-fav">🖤</span></button>
+                                <button className="fv-btn" onClick={favoritoLlevarOQuitar} data-id={peli.id}><span role='img' aria-label="no-fav">🖤</span></button>
                             </div>
                         </div>
                     )
