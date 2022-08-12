@@ -5,13 +5,9 @@ import { Link, Navigate } from 'react-router-dom';
 import '../styles/listado.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import addOrRemoveFavs from "./favoritoSiNo";
 
 
-function Resultado () {
-   
-    const  favoritoLlevarOQuitar =  addOrRemoveFavs;
-
+function Resultado (props) {
     const MySwal = withReactContent(Swal);
     const token = sessionStorage.getItem('token');
     let params = new URLSearchParams(document.location.search)
@@ -41,6 +37,14 @@ function Resultado () {
         {<h2>Resultados de: {keyword}</h2>}
         <div className="cont-peli">
         { resultsList.map((peli, idx) =>{
+             let esFavorito = props.favoritos.some(ele => ele.title === peli.title);
+             let corazon;
+             console.log(esFavorito)
+             if(esFavorito){
+                corazon = "💖"
+            }else{
+                corazon = '🖤' 
+             } 
                     return(
                         <div className="peli" key= {idx}>
                         <span className="peli-titulo">{peli.original_title}</span>
@@ -52,7 +56,7 @@ function Resultado () {
                                 <Link to={`/detalle?movieID=${peli.id}`}>
                                     <button>Ver detalles</button>
                                 </Link>
-                                <button className="fv-btn" onClick={favoritoLlevarOQuitar} data-id={peli.id}><span role='img' aria-label="no-fav">🖤</span></button>
+                                <button className="fv-btn" onClick={props.fnc} data-id={peli.id}><span role='img' aria-label="no-fav">{corazon}</span></button>
                             </div>
                     </div>
                     )

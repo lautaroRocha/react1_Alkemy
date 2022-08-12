@@ -26,3 +26,14 @@ ul li a{
     font-size: 1.2rem;
     font-weight: 600;
 }
+
+.cont{
+    background-color: var(--rosaClaro);
+    color: var(--texto);
+    font-weight: bolder;
+    display: inline-block;
+    border-radius: 50%;
+    width: 50px;
+    line-height: 3rem;
+    text-align: center;
+}

@@ -7,11 +7,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 
-import addOrRemoveFavs from "./favoritoSiNo";
-
 import '../styles/detalle.css'
-function Detalle(){
-    const  favoritoLlevarOQuitar =  addOrRemoveFavs;
+function Detalle(props){
 
     let token = sessionStorage.getItem ('token'); 
     const MySwal = withReactContent(Swal);
@@ -59,7 +56,7 @@ function Detalle(){
                     <div className="detalle-gnr">
                         {movie.genres.map ((oneGenre, idx) => <span key={idx}>{oneGenre.name}</span>)}
                     </div>
-                    <button onClick={favoritoLlevarOQuitar}>AÑADIR A FAVORITOS</button>
+                    <button onClick={props.fnc}>AÑADIR A FAVORITOS</button>
                     </div>
                 </div>}
             </section>

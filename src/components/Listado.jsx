@@ -7,13 +7,10 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-import addOrRemoveFavs from "./favoritoSiNo";
 
 import '../styles/listado.css'
 
-function Listado () {
-    const  favoritoLlevarOQuitar =  addOrRemoveFavs;
-
+function Listado (props) {
     let token = sessionStorage.getItem ('token'); 
     const MySwal = withReactContent(Swal);
     const [ moviesList, setMoviesList ] = useState([]);
@@ -27,6 +24,8 @@ function Listado () {
                 MySwal.fire('hubo un problema conectándose con el servidor')})
         }, [setMoviesList] )
 
+    
+  
     if(token == null){
         return (
         MySwal.fire('debes estar logueado'),
@@ -37,9 +36,19 @@ function Listado () {
         <section className="listado">
         <h2>Listado</h2> 
         <div className="cont-peli">
-        { moviesList.map((peli, idx) =>{
+        { 
+        moviesList.map((peli, idx) =>{
+             let esFavorito = props.favoritos.some(ele => ele.title === peli.title);
+             let corazon;
+             console.log(esFavorito)
+             if(esFavorito){
+                corazon = "💖"
+            }else{
+                corazon = '🖤' 
+             } 
                     return(
                         <div className="peli" key= {idx}>
+                            
                             <span className="peli-titulo">{peli.title}</span>
                             <img className="peli-imagen" src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
                          alt="" />
@@ -49,11 +58,15 @@ function Listado () {
                                 <Link to={`/detalle?movieID=${peli.id}`}>
                                     <button>Ver detalles</button>
                                 </Link>
-                                <button className="fv-btn" onClick={favoritoLlevarOQuitar} data-id={peli.id}><span role='img' aria-label="no-fav">🖤</span></button>
+                                <button className="fv-btn" onClick={props.fnc} data-id={peli.id}><span role='img' aria-label="no-fav" id="cora">
+                                {
+                                corazon}
+                                 </span></button>
                             </div>
                         </div>
                     )
                 }) }
+                
         </div>
         </section>  
         </>

@@ -1,37 +1,21 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-
 import '../styles/listado.css'
 
-import addOrRemoveFavs from "./favoritoSiNo";
-
-function Favoritos(){
-    const [favoritos, setFavoritos] = useState([]);
-
-    useEffect(() => {
-        const favsInLocal = JSON.parse(localStorage.getItem('favs'));
-        setFavoritos(favsInLocal)
-    }
-    , [favoritos])
-    const  favoritoLlevarOQuitar =  addOrRemoveFavs;
-
-    console.log(favoritos)
-
-    
-    if(favoritos === []){
-        return(
-            <section className="listado">
-                <h3>Favoritos</h3>
-                <p>Aquí aparecerán las películas que vayas guardando</p>
-            </section>
-        )
-    }else{
+function Favoritos(props){
         return(
             <section className="listado">
                 <h3>Favoritos</h3>
                 <div className="cont-peli">
-               { favoritos.map((peli, idx) => {
+               { props.favoritos.map((peli, idx) => {
+                 let esFavorito = props.favoritos.some(ele => ele.title === peli.title);
+                 let corazon;
+                 console.log(esFavorito)
+                 if(esFavorito){
+                    corazon = "💖"
+                }else{
+                    corazon = '🖤' 
+                 } 
                     return(
                             <div className="peli" key= {idx}>
                             <span className="peli-titulo">{peli.titu}</span>
@@ -43,14 +27,14 @@ function Favoritos(){
                                     <Link to={`/detalle?movieID=${peli.id}`}>
                                         <button>Ver detalles</button>
                                     </Link>
-                                    <button className="fv-btn" data-id={peli.id} onClick={favoritoLlevarOQuitar}><span role='img' aria-label="no-fav">🖤</span></button>
+                                    <button className="fv-btn" data-id={peli.id} onClick={props.fnc}><span role='img' aria-label="no-fav">{corazon}</span></button>
                                 </div>
                             </div>
                        )})};
                         </div>
             </section>
         )                   
-    }
 }
+
 
 export default Favoritos;

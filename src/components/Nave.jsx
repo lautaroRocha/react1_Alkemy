@@ -4,7 +4,7 @@ import '../styles/nave.css'
 import './Buscador.jsx'
 import Buscador from './Buscador.jsx';
 
-function Nave() {
+function Nave(props) {
     return (
         <header>
             <ul>
@@ -16,6 +16,12 @@ function Nave() {
                 </li>                
                 <li>
                     <Link to="/fav">Favoritos</Link>
+                </li>
+                <li>
+                    {props.favoritos.length > 0 &&
+                    <span className='cont'>{props.favoritos.length}</span>
+                    }
+                    
                 </li>
             </ul>
             <Buscador/>
