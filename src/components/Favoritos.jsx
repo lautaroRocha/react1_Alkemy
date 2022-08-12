@@ -1,16 +1,25 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link , Navigate} from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import '../styles/listado.css'
 
 function Favoritos(props){
-        return(
+    let token = sessionStorage.getItem ('token'); 
+    const MySwal = withReactContent(Swal);
+
+    if(token == null){
+        return ( 
+            MySwal.fire('debes estar logueado'),
+            <Navigate replace to={"/"} />
+            )}else{
+        return (
             <section className="listado">
                 <h3>Favoritos</h3>
                 <div className="cont-peli">
                { props.favoritos.map((peli, idx) => {
                  let esFavorito = props.favoritos.some(ele => ele.title === peli.title);
                  let corazon;
-                 console.log(esFavorito)
                  if(esFavorito){
                     corazon = "💖"
                 }else{
@@ -33,8 +42,8 @@ function Favoritos(props){
                        )})};
                         </div>
             </section>
-        )                   
-}
+        )}
+    }
 
 
 export default Favoritos;

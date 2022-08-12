@@ -7,9 +7,10 @@ import Footer from './components/Footer.jsx';
 import Detalle from './components/Detalle.jsx';
 import Resultado from "./components/Resultado.jsx" 
 import Favoritos from './components/Favoritos.jsx'
+
+
 function App() {
   const [favoritos, setFavoritos] = useState([]);
-
   useEffect(() => {
       const favsInLocal = localStorage.getItem('favs');
       if(favsInLocal !==null){
@@ -19,8 +20,13 @@ function App() {
       
   }
   , [])
-
-
+  // const [token, setToken] = useState(null);
+  // useEffect(() => {
+  //   const tokenStorage = sessionStorage.getItem('token');
+  //   if (tokenStorage !== null){
+  //     setToken(tokenStorage);
+  //   }
+  // })
   const  addOrRemoveFavs = e =>{
     const favs = localStorage.getItem('favs')
 
@@ -62,13 +68,13 @@ function App() {
     <>
 
     <Router>
-      <Nave favoritos={favoritos}/>
+      <Nave favoritos={favoritos} />
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="listado"  element={<Listado fnc={addOrRemoveFavs}  favoritos={favoritos}/>}/>
       <Route path="detalle" element={<Detalle fnc={addOrRemoveFavs}/>} />
       <Route path="resultado" element={<Resultado fnc={addOrRemoveFavs} favoritos={favoritos}/>} />
-      <Route path="fav" element={<Favoritos fnc={addOrRemoveFavs} favoritos={favoritos}/>} />
+      <Route path="fav" element={<Favoritos  fnc={addOrRemoveFavs} favoritos={favoritos}/>} />
     </Routes>
       <Footer />
     </Router>
